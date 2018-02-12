@@ -4,7 +4,7 @@
   "description": "A simple blockchain written in JS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha src/**/*.spec.js --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,14 @@
   "homepage": "https://github.com/capaci/simple-js-blockchain#readme",
   "dependencies": {
     "crypto-js": "^3.1.9-1",
-    "moment": "^2.20.1"
+    "fully-connected-topology": "^1.1.1",
+    "moment": "^2.20.1",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4",
+    "socket.io-p2p-server": "^1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.0"
   }
 }
