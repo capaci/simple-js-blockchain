@@ -1,0 +1,23 @@
+{
+  "name": "simple-js-blockchain",
+  "version": "0.0.0",
+  "description": "A simple blockchain written in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capaci/simple-js-blockchain.git"
+  },
+  "author": "capaci",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/capaci/simple-js-blockchain/issues"
+  },
+  "homepage": "https://github.com/capaci/simple-js-blockchain#readme",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "moment": "^2.20.1"
+  }
+}
