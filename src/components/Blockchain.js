@@ -1,25 +1,47 @@
 const Block = require('./Block')
+const Transaction = require('./Transaction')
 const moment = require('moment')
 
 class Blockchain {
     constructor() {
         this.chain = [this.createGenesisBlock()]
         this.difficulty = 2
+        this.pendingTransactions = []
+        this.miningReward = 666
     }
 
     createGenesisBlock() {
-        return new Block(0, moment().unix(), { name: 'Genesis Block' }, '0')
+        return new Block(moment().unix(), [], 0x0)
     }
 
     getLatestBlock()  {
         return this.chain[this.chain.length - 1]
     }
 
-    addBlock({ data }) {
+    minePendingTransactions(miningRewardAddress) {
         let previousHash = this.getLatestBlock().hash
-        let newBlock = new Block(this.chain.length, moment().unix(), data, previousHash)
-        newBlock.mine(this.difficulty)
-        this.chain.push(newBlock)
+        let block = new Block(moment().unix(), this.pendingTransactions, previousHash)
+        block.mine(this.difficulty)
+        this.chain.push(block)
+
+        this.pendingTransactions = [
+            new Transaction(null, miningRewardAddress, this.miningReward, {})
+        ]
+    }
+
+    createTransaction(from, to, amount, data) {
+        this.pendingTransactions.push(new Transaction(from, to, amount, data))
+    }
+
+    balanceOf(address) {
+        let balance = 0
+        for (const block of this.chain) {
+            for (const t of block.transactions) {
+                if (t.from === address) balance -= t.amount
+                if (t.to === address) balance += t.amount
+            }
+        }
+        return balance
     }
 
     isChainValid() {
