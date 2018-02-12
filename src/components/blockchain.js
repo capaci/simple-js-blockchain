@@ -1,5 +1,5 @@
-const Block = require('./Block')
-const Transaction = require('./Transaction')
+const Block = require('./block')
+const Transaction = require('./transaction')
 const moment = require('moment')
 
 class Blockchain {
